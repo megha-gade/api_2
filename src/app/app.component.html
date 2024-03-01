@@ -1,0 +1,62 @@
+
+    <h1>Manage Products</h1>
+    <div class="container">
+        <div class="create-product">
+            <h2>Create Product</h2>
+            <form #formVariable="ngForm" (ngSubmit)="onProductCreation(formVariable.value)">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product_name" ngModel>
+
+
+                <label for="product-description">Product Description:</label>
+                <input id="product-description" name="product_description" ngModel>
+
+
+                <label for="product-price">Product Price:</label>
+                <input type="number" id="product-price" name="product_price" ngModel>
+
+
+                <input  type="submit" value="{{editMode? 'Update product' : 'Add Product' }}">
+            </form>
+        </div>
+        <div class="all-products">
+            <h2>All Products</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                         <th>Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                               <tr *ngIf="allProductList.length<1 && isLoading">
+                                  <td colspan="5">Products are not Available</td>
+                               </tr>
+
+                              <tr *ngIf="isLoading">
+                                <td colspan="5"><div class="loader"></div></td>
+                              </tr>
+
+                               <tr *ngIf="isLoading">
+                                <td></td>
+                              </tr>
+
+                    <tr *ngFor="let k of allProductList;index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{k.product_name}}</td>
+                        <td>{{k.product_description}}</td>
+                        <td>${{k.product_price}}</td>
+                         <td><button (click)="deleteProductUsingId(k.id)" >Remove</button></td>
+                         <td><button (click)="updateProductUsingId(k.id)" >Update</button></td>
+                    </tr>
+                    </tbody>
+            </table>
+
+            <button (click)="customFetchProduct()" type="submit">Fetch Product</button>
+            <button (click)="ClearProduct()" type="submit">Clear Product</button>
+        </div>
+    </div>

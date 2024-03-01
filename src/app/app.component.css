@@ -1,0 +1,82 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.create-product,
+.all-products {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-product form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-product label {
+  margin-bottom: 5px;
+}
+
+.create-product input,
+.create-product textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.all-products table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.all-products th,
+.all-products td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.all-products th {
+  text-align: left;
+}
+
+/* 'spinner css ' */
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: inline-flex;
+  gap: 10px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side,#000 95%,#0000) 35% 35%/6px 6px no-repeat
+    #fff;
+  transform: scaleX(var(--s,1)) rotate(0deg);
+  animation: l6 1s infinite linear;
+}
+.loader:after {
+  --s: -1;
+  animation-delay:-0.1s;
+}
+@keyframes l6 {
+  100% {transform:scaleX(var(--s,1)) rotate(360deg);}
+}
